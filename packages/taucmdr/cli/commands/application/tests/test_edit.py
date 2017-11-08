@@ -64,3 +64,12 @@ class EditTest(tests.TestCase):
         self.assertIn('application edit <application_name> [arguments]', stderr)
         self.assertIn('application edit: error: unrecognized arguments', stderr)
 
+    def test_discourage_staticapp_selectfile(self):
+        self.reset_project_storage()
+        argv = ['app1', '--linkage', 'static']
+        _, stderr = self.assertCommandReturnValue(0, edit.COMMAND, argv)
+        print stderr
+        print _
+        self.assertFalse(stderr)
+        # argv = ['app1', '--select-file', 'static']
+        # stdout, stderr = self.assertCommandReturnValue(0, edit.COMMAND, argv)
